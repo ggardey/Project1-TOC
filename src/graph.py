@@ -4,6 +4,8 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import csv
 import ast
+import pandas as pd
+
 
 # Parse all graphs from hamilton_input.cnf
 # We will graph all the edges on the graph, and highlight the edges in the hamiltonian path
@@ -62,6 +64,12 @@ def main():
         instance_id = graph['instance_id']
         hpath = hpaths.get(instance_id)
         plot_graph(n, edges, hpath)
+    df = pd.read_csv('results/brute_force_hamilton_input_graph_coloring_results.csv')
+    plt.scatter(df['Num_Vertices'], df['Time'])
+    plt.xlabel('Input Size (Number of Vertices)')
+    plt.ylabel('Time (seconds)')
+    plt.title('Input Size vs Time')
+    plt.show()
 
 if __name__ == '__main__':
     main()
